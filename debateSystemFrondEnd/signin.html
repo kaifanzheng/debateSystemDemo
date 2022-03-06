@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+ 
+    <link rel="stylesheet" type="text/css" href="signin.css"/>
+    <script type="text/javascript" src="signin.js"></script>
+</head>
+ 
+<body>
+<div id="signin_frame">
+ 
+  
+ 
+    <form method="post" action="signin.js">
+ 
+        <p><label class="label_input">email</label><input type="text" id="email" class="text_field"/></p>
+        <p><label class="label_input">username</label><input type="text" id="theusername" class="text_field"/></p>
+        <p><label class="label_input">password</label><input type="text" id="password" class="text_field"/></p>
+        <p><label class="label_input">re-password</label><input type="text" id="re-password" class="text_field"/></p>
+        <div id="signin_control">
+            <input type="button" id="btn_register" value="register" onclick="register();"/>
+            <a id="btn_login" href="login.html">login</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
