@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1LZANJLv1rYNjZrxHuam3g8ml06sGSLjs5qqE/BFzKspDET5b12AiBnfp1tAdXClohiVW8X8dY+j47FajXUNwg==",
+  "dgSpecHash": "sjS7hhKaSNHxp37WaOZPuvIiWd6QXZuXgz1XBETS9IyYFURKSISTdaTiwIkdhYKc5xsd/BMFrMzO0Gfoo/CTNQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kzheng\\gitStuffs\\DebateSystem\\DebateSystem\\DebateSystem.csproj",
+  "projectFilePath": "C:\\Users\\kzheng\\gitStuffs\\debateSystemDemo\\debateSystemBackEnd\\DebateSystem\\DebateSystem\\DebateSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kzheng\\.nuget\\packages\\azure.core\\1.8.1\\azure.core.1.8.1.nupkg.sha512",
     "C:\\Users\\kzheng\\.nuget\\packages\\azure.storage.blobs\\12.8.0\\azure.storage.blobs.12.8.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kzheng\\gitStuffs\\DebateSystem\\DebateSystem\\DebateSystem.csproj": {}
+    "C:\\Users\\kzheng\\gitStuffs\\debateSystemDemo\\debateSystemBackEnd\\DebateSystem\\DebateSystem\\DebateSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kzheng\\gitStuffs\\DebateSystem\\DebateSystem\\DebateSystem.csproj": {
+    "C:\\Users\\kzheng\\gitStuffs\\debateSystemDemo\\debateSystemBackEnd\\DebateSystem\\DebateSystem\\DebateSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kzheng\\gitStuffs\\DebateSystem\\DebateSystem\\DebateSystem.csproj",
+        "projectUniqueName": "C:\\Users\\kzheng\\gitStuffs\\debateSystemDemo\\debateSystemBackEnd\\DebateSystem\\DebateSystem\\DebateSystem.csproj",
         "projectName": "DebateSystem",
-        "projectPath": "C:\\Users\\kzheng\\gitStuffs\\DebateSystem\\DebateSystem\\DebateSystem.csproj",
+        "projectPath": "C:\\Users\\kzheng\\gitStuffs\\debateSystemDemo\\debateSystemBackEnd\\DebateSystem\\DebateSystem\\DebateSystem.csproj",
         "packagesPath": "C:\\Users\\kzheng\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kzheng\\gitStuffs\\DebateSystem\\DebateSystem\\obj\\",
+        "outputPath": "C:\\Users\\kzheng\\gitStuffs\\debateSystemDemo\\debateSystemBackEnd\\DebateSystem\\DebateSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kzheng\\AppData\\Roaming\\NuGet\\NuGet.Config",
