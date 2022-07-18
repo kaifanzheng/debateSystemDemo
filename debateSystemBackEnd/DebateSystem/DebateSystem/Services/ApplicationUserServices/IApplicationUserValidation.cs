@@ -1,6 +1,6 @@
 ﻿using DebateSystem.Models;
 
-namespace DebateSystem.Services
+namespace DebateSystem.Services.ApplicationUserServices
 {
     public interface IApplicationUserValidation
     {

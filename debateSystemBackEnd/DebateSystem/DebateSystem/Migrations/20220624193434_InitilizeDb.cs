@@ -2,7 +2,7 @@
 
 namespace DebateSystem.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitilizeDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,38 +23,32 @@ namespace DebateSystem.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TopicCategories",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(450)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TopicCategories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Topics",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TopicName = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TopicName = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Popularity = table.Column<int>(type: "int", nullable: false),
-                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TopicCategoryId = table.Column<int>(type: "int", nullable: true)
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Topics", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Topics_TopicCategories_TopicCategoryId",
-                        column: x => x.TopicCategoryId,
-                        principalTable: "TopicCategories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TopicTags",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TopicTags", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -82,28 +76,52 @@ namespace DebateSystem.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WrittenArgument",
+                name: "WrittenArguments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Argument = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Argument = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ApplicationUserId = table.Column<int>(type: "int", nullable: false),
                     TopicId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WrittenArgument", x => x.Id);
+                    table.PrimaryKey("PK_WrittenArguments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_WrittenArgument_ApplicationUsers_ApplicationUserId",
+                        name: "FK_WrittenArguments_ApplicationUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "ApplicationUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_WrittenArgument_Topics_TopicId",
+                        name: "FK_WrittenArguments_Topics_TopicId",
                         column: x => x.TopicId,
                         principalTable: "Topics",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TopicTopicTag",
+                columns: table => new
+                {
+                    TopicsId = table.Column<int>(type: "int", nullable: false),
+                    topicTagsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TopicTopicTag", x => new { x.TopicsId, x.topicTagsId });
+                    table.ForeignKey(
+                        name: "FK_TopicTopicTag_Topics_TopicsId",
+                        column: x => x.TopicsId,
+                        principalTable: "Topics",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TopicTopicTag_TopicTags_topicTagsId",
+                        column: x => x.topicTagsId,
+                        principalTable: "TopicTags",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -126,32 +144,30 @@ namespace DebateSystem.Migrations
                 column: "TopicsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TopicCategories_CategoryName",
-                table: "TopicCategories",
-                column: "CategoryName",
-                unique: true,
-                filter: "[CategoryName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Topics_TopicCategoryId",
-                table: "Topics",
-                column: "TopicCategoryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Topics_TopicName",
                 table: "Topics",
                 column: "TopicName",
-                unique: true,
-                filter: "[TopicName] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_WrittenArgument_ApplicationUserId",
-                table: "WrittenArgument",
+                name: "IX_TopicTags_Name",
+                table: "TopicTags",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TopicTopicTag_topicTagsId",
+                table: "TopicTopicTag",
+                column: "topicTagsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WrittenArguments_ApplicationUserId",
+                table: "WrittenArguments",
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WrittenArgument_TopicId",
-                table: "WrittenArgument",
+                name: "IX_WrittenArguments_TopicId",
+                table: "WrittenArguments",
                 column: "TopicId");
         }
 
@@ -161,16 +177,19 @@ namespace DebateSystem.Migrations
                 name: "ApplicationUserTopic");
 
             migrationBuilder.DropTable(
-                name: "WrittenArgument");
+                name: "TopicTopicTag");
+
+            migrationBuilder.DropTable(
+                name: "WrittenArguments");
+
+            migrationBuilder.DropTable(
+                name: "TopicTags");
 
             migrationBuilder.DropTable(
                 name: "ApplicationUsers");
 
             migrationBuilder.DropTable(
                 name: "Topics");
-
-            migrationBuilder.DropTable(
-                name: "TopicCategories");
         }
     }
 }

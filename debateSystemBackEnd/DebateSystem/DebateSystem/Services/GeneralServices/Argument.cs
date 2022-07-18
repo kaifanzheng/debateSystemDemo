@@ -1,5 +1,5 @@
 ﻿using System;
-namespace DebateSystem.Services
+namespace DebateSystem.Services.GeneralServices
 {
     public static class Argument
     {

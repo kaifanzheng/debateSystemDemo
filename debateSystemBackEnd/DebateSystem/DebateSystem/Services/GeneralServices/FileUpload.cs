@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace DebateSystem.Services
+namespace DebateSystem.Services.GeneralServices
 {
     public class FileUpload
     {

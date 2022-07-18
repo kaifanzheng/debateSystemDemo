@@ -5,14 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DebateSystem.Models
 {
-    public class TopicCategory
+    public class TopicTag
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Topic name cannot be empty")]
-        public string CategoryName { get; set; }
-        [NotMapped]
-        public IFormFile CategoryImg { get; set; }
-        public string ImageUrl { get; set; }
+        [Required(ErrorMessage = "tag name cannot be empty")]
+        public string Name { get; set; }
+        public string Description { get; set; }
         public ICollection<Topic> Topics { get; set; }
     }
 }

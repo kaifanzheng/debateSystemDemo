@@ -17,6 +17,6 @@ namespace DebateSystem.Models
         public string ImgUrl { get; set; }
         public ICollection<ApplicationUser> ApplicationUsers {get; set;}
         public ICollection<WrittenArgument> WrittenArguments { get; set; }
-        public int? TopicCategoryId { get; set; }
+        public ICollection<TopicTag> topicTags { get; set; }
     }
 }
