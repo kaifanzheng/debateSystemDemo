@@ -1,6 +1,7 @@
 ﻿using DebateSystem.Data;
 using DebateSystem.Models;
 using DebateSystem.Services.GeneralServices;
+using DebateSystem.Services.TopicServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ namespace DebateSystem.Controllers
     public class TopicController : ControllerBase
     {
 
+        private ITopicValidation _validation;
         private ApiDbContext _dbContext;
         private FileUpload fileUpload_service;
         public record TopicDetilsResponse(int Id, String TopicName, IEnumerable<string> UserNames, IEnumerable<string> TagNames);
@@ -25,6 +27,7 @@ namespace DebateSystem.Controllers
         {
             _dbContext = dbContext;
             fileUpload_service = new FileUpload();
+            _validation = new TopicValidation();
         }
 
         // GET: api/<TopicController>
@@ -85,7 +88,7 @@ namespace DebateSystem.Controllers
         {
             try
             {
-                topic = Argument.NotNull(topic, nameof(topic));
+                topic = this._validation.topicValidation(Argument.NotNull(topic, nameof(topic)));
                 var imgURL = await fileUpload_service.UploadFile(topic.TopicImg);
                 topic.ImgUrl = imgURL;
                 await _dbContext.Topics.AddAsync(topic);
@@ -105,7 +108,7 @@ namespace DebateSystem.Controllers
             try
             {
                 var atopic = await _dbContext.Topics.FindAsync(id);
-                atopic = Argument.NotNull(atopic, nameof(atopic));
+                atopic = _validation.topicValidation(Argument.NotNull(atopic, nameof(atopic)));
 
                 var imgURL = await fileUpload_service.UploadFile(atopic.TopicImg);
 
